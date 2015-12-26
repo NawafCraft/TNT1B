@@ -19,7 +19,7 @@ use pocketmine\nbt\tag\Byte;
 class Tnt extends PluginBase implements Listener {
     public function onEnable() {
         $this->getLogger()->info(TextFormat::BLUE ."===============");
-        $this->getLogger()->info(TextFormat::GREEN ."Have FUN");
+        $this->getLogger()->info(TextFormat::GREEN ."Have FUN Plugin BY Nawaf_Craft1b");
         $this->getLogger()->info(TextFormat::BLUE ."===============");
             $this->getServer ()->getPluginManager ()->registerEvents ( $this, $this );
     }
@@ -65,7 +65,7 @@ class Tnt extends PluginBase implements Listener {
             $player = $place->getPlayer();
          
             IF($block->getId()===46){
-                $player->sendTIP("Plugin Nawaf1b");
+               
                 	$place->setCancelled();
 			$mot = (new Random())->nextSignedFloat() * M_PI * 2;
 			$tnt = Entity::createEntity("PrimedTNT", $block->getLevel()->getChunk($block->x >> 4, $block->z >> 4), new Compound("", [
