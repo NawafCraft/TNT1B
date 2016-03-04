@@ -2,20 +2,20 @@
 namespace Tnt;
 use pocketmine\utils\TextFormat;
 use pocketmine\level\sound\AnvilUseSound;
-use pocketmine\nbt\tag\Compound;
+use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\entity\Entity;
-use pocketmine\nbt\tag\Enum;
-use pocketmine\nbt\tag\Double;
+use pocketmine\nbt\tag\EnumTag;
+use pocketmine\nbt\tag\DoubleTag;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\utils\Random;
 use pocketmine\event\entity\ExplosionPrimeEvent;
-use pocketmine\nbt\tag\Float;
+use pocketmine\nbt\tag\FloatTag;
 use pocketmine\event\Listener;
 use pocketmine\event\server\DataPacketReceiveEvent;
 use pocketmine\network\protocol\UseItemPacket;
 use pocketmine\event\block\BlockPlaceEvent;
-use pocketmine\nbt\tag\Byte;
+use pocketmine\nbt\tag\ByteTag;
 class Tnt extends PluginBase implements Listener {
     public function onEnable() {
         $this->getLogger()->info(TextFormat::BLUE ."===============");
@@ -31,22 +31,22 @@ class Tnt extends PluginBase implements Listener {
             if($item->getId() == 369){
                 $mot = (new Random())->nextSignedFloat() * M_PI * 2;
 			$tnt = Entity::createEntity("PrimedTNT", $player->getLevel()->getChunk($player->x >> 4, $player->z >> 4), new Compound("", [
-				"Pos" => new Enum("Pos", [
-					new Double("", $player->x + 0.5),
-					new Double("", $player->y),
-					new Double("", $player->z + 0.5)
+				"Pos" => new EnumTag("Pos", [
+					new DoubleTag("", $player->x + 0.5),
+					new DoubleTag("", $player->y),
+					new DoubleTag("", $player->z + 0.5)
 				]),
-				"Motion" => new Enum("Motion", [
-					new Double("", -sin($mot) * 0.02),
-					new Double("", 0.2),
-					new Double("", -cos($mot) * 0.02)
+				"Motion" => new EnumTag("Motion", [
+					new DoubleTag("", -sin($mot) * 0.02),
+					new DoubleTag("", 0.2),
+					new DoubleTag("", -cos($mot) * 0.02)
 				]),
-				"Rotation" => new Enum("Rotation", [
-					new Float("", 0),
-					new Float("", 0)
+				"Rotation" => new EnumTag("Rotation", [
+					new FloatTag("", 0),
+					new FloatTag("", 0)
                                     
 				]),
-				"Fuse" => new Byte("Fuse", 100)
+				"Fuse" => new ByteTag("Fuse", 100)
 			]));
 			$tnt->spawnToAll();
                         $player->getLevel()->addSound(new AnviluseSound($player),array($player));
@@ -69,22 +69,22 @@ class Tnt extends PluginBase implements Listener {
                 	$place->setCancelled();
 			$mot = (new Random())->nextSignedFloat() * M_PI * 2;
 			$tnt = Entity::createEntity("PrimedTNT", $block->getLevel()->getChunk($block->x >> 4, $block->z >> 4), new Compound("", [
-				"Pos" => new Enum("Pos", [
-					new Double("", $block->x + 0.5),
-					new Double("", $block->y),
-					new Double("", $block->z + 0.5)
+				"Pos" => new EnumTag("Pos", [
+					new DoubleTag("", $block->x + 0.5),
+					new DoubleTag("", $block->y),
+					new DoubleTag("", $block->z + 0.5)
 				]),
-				"Motion" => new Enum("Motion", [
-					new Double("", -sin($mot) * 0.02),
-					new Double("", 0.2),
-					new Double("", -cos($mot) * 0.02)
+				"Motion" => new EnumTag("Motion", [
+					new DoubleTag("", -sin($mot) * 0.02),
+					new DoubleTag("", 0.2),
+					new DoubleTag("", -cos($mot) * 0.02)
 				]),
-				"Rotation" => new Enum("Rotation", [
-					new Float("", 0),
-					new Float("", 0)
+				"Rotation" => new EnumTag("Rotation", [
+					new FloatTag("", 0),
+					new FloatTag("", 0)
                                     
 				]),
-				"Fuse" => new Byte("Fuse", 100)
+				"Fuse" => new ByteTag("Fuse", 100)
 			]));
 			$tnt->spawnToAll();
                         $player->getLevel()->addSound(new AnviluseSound($player),array($player));
